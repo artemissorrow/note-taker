@@ -1,26 +1,33 @@
-const express = require('express');
-const path = require('path');
-const fs = require('fs');
+const express = require('express')
+const path = require('path')
+const fs = require('fs')
 const notes = require('../db/db.json')
-
 
 const app = express()
 const PORT = process.env.PORT || 7500
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-app.use('/static', express.static(path.join(__dirname, 'public')))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
+app.use(express.static('/public'));
 
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.use('js', function (req, res) {
+    res.sendFile(path.join(__dirname,'/index.js'))
+});
 
-app.get('/notes', (req, res) => res.sendFile(path.join(__dirname, 'notes.html')));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'index.html'));
+});
+
+app.get('/notes', (req, res) =>
+  res.sendFile(path.join(__dirname, 'notes.html'))
+)
 
 app.get('/api/notes', (req, res) => {
-    res.json(notes);
-});
+  res.json(notes)
+})
 
 app.post('/api/notes', (req, res) => {
-    res.send(req.body);
-});
+  res.send(req.body)
+})
 
-app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`));
+app.listen(PORT, () => console.log(`App listening on PORT ${PORT}`))
