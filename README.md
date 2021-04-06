@@ -14,4 +14,4 @@ How it was done:
 
 Finished app is deployed on Heroku: https://taking-notes-42.herokuapp.com/  
   
-![screenshot of deployed app]("./Screenshot0405.jpg") 
+![screenshot of deployed app](./Screenshot0405.jpg) 
