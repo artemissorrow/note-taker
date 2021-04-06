@@ -32,7 +32,7 @@ app.post('/api/notes', (req, res) => {
 
   noteString = JSON.stringify(notes);
 
-  fs.appendFile('./db/db.json', noteString, err => {
+  fs.writeFile('./db/db.json', noteString, err => {
     if (err) throw err
   })
 })
